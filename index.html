@@ -26,6 +26,17 @@
         margin: 0 0 5px;
         color: #777;
       }
+      .legend {
+        line-height: 18px;
+        color: #555;
+      }
+      .legend i {
+        width: 18px;
+        height: 18px;
+        float: left;
+        margin-right: 8px;
+        opacity: 0.7;
+      }
     </style>
   </head>
   <body>
@@ -58,16 +69,13 @@
         const numTests = getTests(props);
         return positiveCount / numTests;
       }
-      function getColor(props) {
-        const positivity = getPositivityRate(props);
-        console.log(props.NAME, positivity);
-
+      function getColor(positivity) {
         const index =
-          positivity > 0.1
+          positivity >= 0.1
             ? 0
-            : positivity > 0.05
+            : positivity >= 0.05
             ? 1
-            : positivity > 0.01
+            : positivity >= 0.01
             ? 2
             : 3;
         // https://colorbrewer2.org/#type=diverging&scheme=RdGy&n=4
@@ -81,7 +89,7 @@
           color: "white",
           dashArray: "3",
           fillOpacity: 0.7,
-          fillColor: getColor(feature.properties),
+          fillColor: getColor(getPositivityRate(feature.properties)),
         };
       }
 
@@ -142,6 +150,30 @@
       };
 
       info.addTo(map);
+
+      var legend = L.control({ position: "bottomright" });
+
+      legend.onAdd = function (map) {
+        var div = L.DomUtil.create("div", "info legend"),
+          grades = [0, 0.01, 0.05, 0.1],
+          labels = [];
+
+        // loop through our density intervals and generate a label with a colored square for each interval
+        for (var i = 0; i < grades.length; i++) {
+          div.innerHTML +=
+            '<i style="background:' +
+            getColor(grades[i]) +
+            '"></i> ' +
+            (grades[i] * 100).toFixed() +
+            (grades[i + 1]
+              ? "&ndash;" + (grades[i + 1] * 100).toFixed() + " %<br>"
+              : "+ %");
+        }
+
+        return div;
+      };
+
+      legend.addTo(map);
 
       function getDateRange() {
         const dates = Object.keys(

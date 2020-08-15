@@ -29,7 +29,8 @@ Resources:
 - [x] change script to download covid xlsx data
 - [x] publish index.html to gh-pages
 - [x] add display of date range
-- [ ] add hover with county details
-- [ ] add toggle between past 7 and past 14 days
-- [ ] add legend for the colors
-- [ ] more buckets for positivity rates (0-2, 2-4, 4-6, 6-8, 8-10, 10+)
+- [x] add hover with county details
+- [x] add legend for the colors
+- [ ] add toggle between past 7 and past 14 days?
+- [ ] more buckets for positivity rates (0-2, 2-4, 4-6, 6-8, 8-10, 10+)?
+- [ ] seem to not have past two days worth of data reliably
