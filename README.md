@@ -31,6 +31,6 @@ Resources:
 - [x] add display of date range
 - [x] add hover with county details
 - [x] add legend for the colors
+- [x] seem to not have past two days worth of data reliably
 - [ ] add toggle between past 7 and past 14 days?
 - [ ] more buckets for positivity rates (0-2, 2-4, 4-6, 6-8, 8-10, 10+)?
-- [ ] seem to not have past two days worth of data reliably

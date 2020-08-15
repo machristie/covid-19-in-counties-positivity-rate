@@ -22,7 +22,8 @@ def load_county_populations(population_csv, column="POPESTIMATE2019"):
 
 def load_covid_19_data(covid_data_excel):
     covid = pd.read_excel(covid_data_excel)
-    past_14_days = [(date.today() - timedelta(days=x)).isoformat() for x in range(14)]
+    # Past 14 days starting from yesterday
+    past_14_days = [(date.today() - timedelta(days=x)).isoformat() for x in range(1, 15)]
     covid = covid[covid["DATE"].isin(past_14_days)]
     covid_count = covid.pivot(index="LOCATION_ID", columns="DATE", values="COVID_COUNT").to_dict('index')
     covid_deaths = covid.pivot(index="LOCATION_ID", columns="DATE", values="COVID_DEATHS").to_dict('index')
