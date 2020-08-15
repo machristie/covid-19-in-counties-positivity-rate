@@ -17,6 +17,8 @@
     </style>
   </head>
   <body>
+    <h1>Positivity Rate in Indiana Counties</h1>
+    <p>From <span id="start-date"></span> to <span id="end-date"></span></p>
     <div id="map"></div>
     <script src="counties.geojson"></script>
     <script type="text/javascript">
@@ -69,6 +71,15 @@
       }
 
       L.geoJson(counties, {style: style}).addTo(map);
+
+      function getDateRange() {
+        const dates = Object.keys(counties.features[0].properties.COVID_COUNT).sort()
+        return [dates[0], dates[dates.length - 1]];
+      }
+
+      const [startDate, endDate] = getDateRange();
+      document.getElementById("start-date").textContent = startDate;
+      document.getElementById("end-date").textContent = endDate;
     </script>
   </body>
 </html>

@@ -27,8 +27,8 @@ Resources:
       geojson
 - [x] remove fetch
 - [x] change script to download covid xlsx data
-- [ ] publish index.html to gh-pages
-- [ ] add display of date range
+- [x] publish index.html to gh-pages
+- [x] add display of date range
 - [ ] add hover with county details
 - [ ] add toggle between past 7 and past 14 days
 - [ ] add legend for the colors
