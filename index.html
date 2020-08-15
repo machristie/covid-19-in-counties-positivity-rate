@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COVID-19: Indiana Counties</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <style>
+      #map {
+        width: 800px;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="counties.geojson"></script>
+    <script type="text/javascript">
+      var map = L.map("map", {
+        center: [39.817, -86.155],
+        zoom: 7,
+      });
+      L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png").addTo(map);
+
+      // map.on('click', (e) => {
+      //     console.log(e.latlng, map.getZoom());
+      // });
+
+      function getTotal(data) {
+        return Object.values(data).reduce((a, b) => a + b, 0);
+      }
+      function getTests(props) {
+        return getTotal(props.COVID_TEST);
+      }
+      function getCount(props) {
+        return getTotal(props.COVID_COUNT);
+      }
+      function getColor(props) {
+        const positiveCount = getCount(props);
+        const numTests = getTests(props);
+        const positivity = positiveCount / numTests;
+        console.log(props.NAME, positivity);
+
+        const index =
+          positivity > 0.1
+            ? 0
+            : positivity > 0.05
+            ? 1
+            : positivity > 0.01
+            ? 2
+            : 3;
+        // https://colorbrewer2.org/#type=diverging&scheme=RdGy&n=4
+        const colors = ["#ca0020", "#f4a582", "#bababa", "#404040"];
+        return colors[index];
+      }
+      function style(feature) {
+        return {
+          weight: 2,
+          opacity: 1,
+          color: "white",
+          dashArray: "3",
+          fillOpacity: 0.7,
+          fillColor: getColor(feature.properties),
+        };
+      }
+
+      L.geoJson(counties, {style: style}).addTo(map);
+    </script>
+  </body>
+</html>
