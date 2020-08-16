@@ -1,14 +1,17 @@
-# Exercise 1: Choropleth map of COVID-19 trends in Indiana counties
+# Choropleth map of COVID-19 trends in Indiana counties
 
-Color code each county in Indiana based on the 7 or 14 day trend of:
+Color code each county in Indiana based on the 14 day trend of positivity rate.
 
-- number of COVID-19 cases
-- number of COVID-19 cases normalized against county population
-- number of COVID-19 deaths
-- number of COVID-19 deaths normalized against county population
-- positivity rate
+## Getting Started
 
-Resources:
+```
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python prepare_geojson.py
+```
+
+## Resources
 
 - https://leafletjs.com/examples/choropleth/
 - https://hub.mph.in.gov/dataset/covid-19-county-wide-test-case-and-death-trends/resource/afaa225d-ac4e-4e80-9190-f6800c366b58
@@ -34,3 +37,4 @@ Resources:
 - [x] seem to not have past two days worth of data reliably
 - [ ] add toggle between past 7 and past 14 days?
 - [ ] more buckets for positivity rates (0-2, 2-4, 4-6, 6-8, 8-10, 10+)?
+- [ ] make more mobile friendly
