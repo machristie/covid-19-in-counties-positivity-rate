@@ -2,6 +2,9 @@
 
 Color code each county in Indiana based on the 14 day trend of positivity rate.
 
+See the live site at
+https://machristie.github.io/covid-19-in-counties-positivity-rate/
+
 ## Getting Started
 
 ```
@@ -18,7 +21,8 @@ python prepare_geojson.py
   - https://hub.mph.in.gov/api/3/action/datastore_search?q={%22COUNTY_NAME%22:%22monroe%22,%20%22DATE%22:%222020-07-31%22}&resource_id=afaa225d-ac4e-4e80-9190-f6800c366b58
   - https://hub.mph.in.gov/api/3/action/datastore_search?q={%22DATE%22:%222020-07-31%22}&resource_id=afaa225d-ac4e-4e80-9190-f6800c366b58
   - https://hub.mph.in.gov/api/3/action/datastore_search_sql?sql=SELECT%20*%20from%20%22afaa225d-ac4e-4e80-9190-f6800c366b58%22%20WHERE%20%22COUNTY_NAME%22%20LIKE%20%27Monroe%27
-  - `q` parameter in the API is too fuzzy, not exact enough. Use `filters` or SQL instead.
+  - `q` parameter in the API is too fuzzy, not exact enough. Use `filters` or
+    SQL instead.
   - https://hub.mph.in.gov/api/3/action/datastore_search_sql?sql=SELECT%20*%20from%20%22afaa225d-ac4e-4e80-9190-f6800c366b58%22%20WHERE%20%22DATE%22%20%3E=%20current_date%20-%2014
 - https://www2.census.gov/programs-surveys/popest/datasets/2010-2019/counties/totals/co-est2019-alldata.csv
 - county shape data: https://eric.clst.org/tech/usgeojson/
